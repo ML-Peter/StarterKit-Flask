@@ -1,0 +1,52 @@
+{% extends 'portions/base.html' %}
+
+{% block title %}StarterKit Flask{% endblock %}
+
+{% block content %}
+    <!-- Déco animée -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute w-[600px] h-[600px] bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse top-[-200px] left-[-200px]"></div>
+        <div class="absolute w-[500px] h-[500px] bg-indigo-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse bottom-[-150px] right-[-150px]"></div>
+    </div>
+
+    <!-- Hero -->
+    <main class="relative z-10 flex flex-col items-center justify-center flex-1 px-6 py-12 lg:py-24">
+        <div class="max-w-4xl text-center">
+            <h1 class="text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight">
+                🚀 Bienvenue sur <span class="text-blue-600">StarterKit Flask</span>
+            </h1>
+            <p class="mt-6 text-lg text-gray-600 max-w-2xl mx-auto">
+                Un kit moderne, élégant et prêt à l'emploi pour lancer vos projets Flask plus rapidement.  
+                Conçu avec <span class="font-semibold text-blue-700">TailwindCSS</span> et un style minimaliste ✨.
+            </p>
+
+            <!-- CTA -->
+            {% if is_authenticated %}
+                <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="/accueil" class="px-8 py-3 rounded-full bg-blue-600 text-white font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition transform">
+                        Accueil
+                    </a>
+                </div>
+            {% else %}
+                <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="/register" class="px-8 py-3 rounded-full bg-blue-600 text-white font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition transform">
+                        Créer un compte
+                    </a>
+                    <a href="/login" class="px-8 py-3 rounded-full border border-blue-600 text-blue-600 bg-white font-semibold shadow hover:bg-blue-50 hover:scale-105 transition transform">
+                        Connexion
+                    </a>
+                </div>
+            {% endif %}
+
+            <!-- Docs -->
+            <div class="mt-10 flex flex-wrap justify-center gap-6 text-sm text-gray-500">
+                <a href="https://flask.palletsprojects.com/" target="_blank" class="hover:text-blue-600 transition underline underline-offset-4">
+                    📘 Documentation Flask
+                </a>
+                <a href="https://tailwindcss.com/docs" target="_blank" class="hover:text-blue-600 transition underline underline-offset-4">
+                    🎨 Documentation TailwindCSS
+                </a>
+            </div>
+        </div>
+    </main>
+{% endblock %}

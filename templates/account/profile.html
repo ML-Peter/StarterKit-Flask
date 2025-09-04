@@ -1,0 +1,45 @@
+{% extends 'portions/head.html' %}
+
+{% block title %}Mon Profil{% endblock %}
+
+{% block content %}
+    <!-- Bouton retour stylé -->
+    <div class="absolute left-16 top-24 z-20">
+        <a href="/accueil" class="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur border border-blue-200 text-blue-700 rounded-full shadow-lg hover:bg-blue-100 hover:backdrop-blur-lg hover:scale-105 transition-all duration-200">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
+            <span class="hidden sm:inline">Retour à l'accueil</span>
+        </a>
+    </div>
+    <div class="pt-20"></div>
+    <!-- Décor animé -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute w-[500px] h-[500px] bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse top-[-150px] left-[-150px]"></div>
+        <div class="absolute w-[400px] h-[400px] bg-indigo-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse bottom-[-100px] right-[-100px]"></div>
+    </div>
+
+    <!-- Contenu principal -->
+    <main class="relative z-10 flex-1 flex items-center justify-center px-6 py-12">
+        <section class="w-full max-w-md bg-white/90 backdrop-blur rounded-2xl shadow-2xl p-8 text-center">
+            <h1 class="text-3xl font-extrabold text-blue-800 mb-6">Profil de {{ username }}</h1>
+
+            {% if account %}
+                <p class="mb-3 text-gray-700"><strong>Nom complet :</strong> {{ account.full_name }}</p>
+                <p class="mb-3 text-gray-700"><strong>Email :</strong> {{ account.email }}</p>
+                <p class="mb-3 text-gray-700"><strong>Bio :</strong> {{ account.bio }}</p>
+            {% else %}
+                <p class="text-gray-600">Vous n'avez pas encore renseigné votre profil.</p>
+            {% endif %}
+
+            <a href="/account/edit" class="mt-6 inline-block px-6 py-3 bg-blue-600 text-white rounded-xl font-semibold shadow-md hover:bg-blue-700 hover:shadow-lg transform hover:scale-[1.02] transition">
+                Modifier le profil
+            </a>
+
+            <!-- Formulaire de suppression de compte -->
+            <form action="{{ url_for('account.delete_account') }}" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.');" class="mt-4">
+                <button type="submit" class="px-6 py-2 bg-red-600 text-white rounded shadow hover:bg-red-700 transition">
+                    Supprimer mon compte
+                </button>
+            </form>
+        </section>
+    </main>
+{% endblock %}

@@ -1,0 +1,20 @@
+# Environnement virtuel
+venv/
+
+# Fichiers Python compilés
+__pycache__/
+*.pyc
+
+# Base de données locale
+instance/
+*.db
+
+# Variables d'environnement
+.env
+
+# Fichiers temporaires
+*.log
+*.tmp
+
+# VS Code
+.vscode/
